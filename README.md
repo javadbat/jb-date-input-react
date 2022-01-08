@@ -1,1 +1,229 @@
-# jb-date-input-react
+# JBDateInput
+
+react component form element to get date from user
+
+- support jalali date as well as gregorian date
+
+- support keyboard arrow key and fast date input with keyboard
+
+- customizable style with css variable
+
+- can set min and max date value
+
+sample: <https://codepen.io/javadbat/pen/qBRyYKY>
+
+## instructions
+
+### getting started
+
+#### using npm
+
+1- install package:
+
+```command
+npm i jb-input-react
+```
+
+2- import package in your jsx file:
+
+```js
+import JBDateInput from 'jb-input-react';
+```
+
+3- use it in your jsx file like any other tag:
+
+```jsx
+<JBDateInput label="date label"></JBDateInput>
+```
+
+#### using cdn
+
+you can just add script tag to your html file and then use react component how ever you need
+
+```HTML
+<script src="https://unpkg.com/jb-date-input-react"></script>
+<script src="https://unpkg.com/jb-calendar-react"></script>
+
+```
+
+### format
+
+defualt format of date input is 'YYYY-MM-DDTHH:mm:ss.SSS[Z]' that compatible and exact format of `new Date().toISOString()`
+you can change it however you need and `[Z]` mean the exact Z charecter that used in ISO standard format `YYYY-MM-DDTHH:mm:ss.SSSZ[Z]` => `2012-06-21T00:00:00.000+3:30Z`
+you can change format by format attribute:
+
+```jsx
+
+<JBDateInput label="تاریخ" format="YYYY/MM/DD" value="2020/08/14"></JBDateInput>
+
+```
+
+### valueType
+
+we have 3 value type:
+
+```jsx
+    <JBDateInput value="2020-08-01T14:05:39.530Z" valueType="GREGORIAN"/>
+    <JBDateInput value="1596291030322" valueType="TIME_STAMP"/>
+    <JBDateInput value="1399-05-01T12:05:39.530Z" valueType="JALALI"/>
+```
+
+### min and max date limit
+
+you can set minimum date and maximum date range for your app 
+
+```jsx
+ <JBDateInput label="تاریخ شروع " value="2020-08-10T08:51:23.176Z" min="2020-08-05T08:51:23.176Z" max="2020-08-15T08:51:23.176Z">
+ </JBDateInput>
+```
+### custom validation
+
+beside of min and max you can also set your own custom validation like any other jb react components family to achive this you must create a array of validations and pass it to validationList props.
+
+```js
+const validationList = [
+        {
+            validator:/^13.*$/g,
+            message:'تاریخ باید تنها در قرن 13 شمسی باشد'
+        },
+        {
+            validator:(inputedText, valueObject, valueText)=>{
+                //you can use raw inputed text or formatted text in expected value in argumants
+                //you have access to both jalali and gregorian date object here in valueObject
+                // remember valueObject and valueText are both empty and null when date is incomplete
+                //if you want to validate incomplete date you can use inputedText
+                return valueObject.jalali.day == 15;
+            },
+            message:'باید تاریخ حتما  15 ماه انتخاب شود'
+        }
+];
+    
+```
+```jsx
+    <JBDateInput validationList={validationList}></JBDateInput>
+```
+
+
+remember your min and max date must be in the same format and valueType of your value.
+to trigger validation and check is the element has a valid value:
+
+```jsx
+// if in triggerInputValidation(showError) show error was false, in case of error,component wont show the error itself and the  function will return if the data is valid or not
+const MyForm = (props) => {
+
+    const dateElementRef = useRef(null);
+    const [validationResult, setValidationResult] = useState();
+    return(
+        <div>
+            <JBDateInput ref={dateElementRef}></JBDateInput>
+            <button onClick={()=>{setValidationResult(dateElementRef.current.triggerInputValidation(true))}}>check and show validation error</button>
+            <button onClick={()=>{setValidationResult(dateElementRef.current.triggerInputValidation(false))}}>check validation</button>
+        </div>
+        )
+    };
+
+```
+
+### events
+- onSelect
+```js 
+    <JBDateInput onSelect={(event) => {console.log(event.target.value)}}></JBDateInput>
+```
+- onChange
+```js 
+    <JBDateInput onChange={(event) => {console.log(event.target.value)}}></JBDateInput>
+```
+
+- onKeyup
+```js 
+    <JBDateInput onKeyup={(event) => {console.log(event.target.value)}}></JBDateInput>
+```
+
+### date input type
+
+jb-calendar support both jalali and gregorian(miladi) calendar input type. like value-type that let you determine how you want to provide/expect data to/from JBDateInput you can specify how user must fill the date input.
+to achive this you have to set `inputType` props or set `inputType` object to component  directly using your elements ref.
+to set it as props you can set value like this:
+
+```jsx
+<JBDateInput inputType="GREGORIAN"></JBDateInput>
+<JBDateInput inputType="JALALI"></JBDateInput>
+```
+and for doing it with direct DOM assignment you can use following js code:
+
+```js
+//to show gregorian calendar
+const elementRef =  React.createRef();
+//set ref to element ...
+elementRef.current.inputType = "GREGORIAN" 
+elementRef.current.inputType = "JALALI"
+```
+
+### customize calendar button trigger
+
+you can change calendar icon base on your own need to doing so you just have to put your custom html inside the react component with `slot="calendar-trigger-icon"` like below:
+
+```jsx
+<JBDateInput >
+        <div slot="calendar-trigger-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 610.398 610.398">
+                <g>
+                    <g>
+                        <path d="M159.567,0h-15.329c-1.956,0-3.811,0.411-5.608,0.995c-8.979,2.912-15.616,12.498-15.616,23.997v10.552v27.009v14.052    c0,2.611,0.435,5.078,1.066,7.44c2.702,10.146,10.653,17.552,20.158,17.552h15.329c11.724,0,21.224-11.188,21.224-24.992V62.553    V35.544V24.992C180.791,11.188,171.291,0,159.567,0z" />
+                        <path d="M461.288,0h-15.329c-11.724,0-21.224,11.188-21.224,24.992v10.552v27.009v14.052c0,13.804,9.5,24.992,21.224,24.992    h15.329c11.724,0,21.224-11.188,21.224-24.992V62.553V35.544V24.992C482.507,11.188,473.007,0,461.288,0z" />
+                        <path d="M539.586,62.553h-37.954v14.052c0,24.327-18.102,44.117-40.349,44.117h-15.329c-22.247,0-40.349-19.79-40.349-44.117    V62.553H199.916v14.052c0,24.327-18.102,44.117-40.349,44.117h-15.329c-22.248,0-40.349-19.79-40.349-44.117V62.553H70.818    c-21.066,0-38.15,16.017-38.15,35.764v476.318c0,19.784,17.083,35.764,38.15,35.764h468.763c21.085,0,38.149-15.984,38.149-35.764    V98.322C577.735,78.575,560.671,62.553,539.586,62.553z M527.757,557.9l-446.502-0.172V173.717h446.502V557.9z" />
+                        <path d="M353.017,266.258h117.428c10.193,0,18.437-10.179,18.437-22.759s-8.248-22.759-18.437-22.759H353.017    c-10.193,0-18.437,10.179-18.437,22.759C334.58,256.074,342.823,266.258,353.017,266.258z" />
+                        <path d="M353.017,348.467h117.428c10.193,0,18.437-10.179,18.437-22.759c0-12.579-8.248-22.758-18.437-22.758H353.017    c-10.193,0-18.437,10.179-18.437,22.758C334.58,338.288,342.823,348.467,353.017,348.467z" />
+                        <path d="M353.017,430.676h117.428c10.193,0,18.437-10.18,18.437-22.759s-8.248-22.759-18.437-22.759H353.017    c-10.193,0-18.437,10.18-18.437,22.759S342.823,430.676,353.017,430.676z" />
+                        <path d="M353.017,512.89h117.428c10.193,0,18.437-10.18,18.437-22.759c0-12.58-8.248-22.759-18.437-22.759H353.017    c-10.193,0-18.437,10.179-18.437,22.759C334.58,502.71,342.823,512.89,353.017,512.89z" />
+                        <path d="M145.032,266.258H262.46c10.193,0,18.436-10.179,18.436-22.759s-8.248-22.759-18.436-22.759H145.032    c-10.194,0-18.437,10.179-18.437,22.759C126.596,256.074,134.838,266.258,145.032,266.258z" />
+                        <path d="M145.032,348.467H262.46c10.193,0,18.436-10.179,18.436-22.759c0-12.579-8.248-22.758-18.436-22.758H145.032    c-10.194,0-18.437,10.179-18.437,22.758C126.596,338.288,134.838,348.467,145.032,348.467z" />
+                        <path d="M145.032,430.676H262.46c10.193,0,18.436-10.18,18.436-22.759s-8.248-22.759-18.436-22.759H145.032    c-10.194,0-18.437,10.18-18.437,22.759S134.838,430.676,145.032,430.676z" />
+                        <path d="M145.032,512.89H262.46c10.193,0,18.436-10.18,18.436-22.759c0-12.58-8.248-22.759-18.436-22.759H145.032    c-10.194,0-18.437,10.179-18.437,22.759C126.596,502.71,134.838,512.89,145.032,512.89z" />
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </JBDateInput>
+```
+### set custom style
+
+in some cases in your project you need to change defualt style of react-component for example you need zero margin or different border-radius and etc.    
+if you want to set a custom style to this react-component all you need is to set css variable in parent scope of react-component 
+| css variable name                       | description                                                                                   |
+| -------------                           | -------------                                                                                 |
+| --jb-date-input-margin                  | web-component margin defualt is `0 12px`                                                      |
+| --jb-date-input-border-radius           | web-component border-radius defualt is `16px`                                                 |
+| --jb-date-input-border-color            | border color of select in normal mode                                                         |
+| --jb-date-input-border-color-focus      | border color when user focus on input                                                         |
+| --jb-date-input-bgcolor                 | background color of input                                                                     |
+| --jb-date-input-message-box-display     | defualt is block but if you set it to none message box will be hidden                         |
+| --jb-date-input-text-align              | text align of input                                                                           |
+| --jb-date-input-box-height              | height of input box                                                                           |
+| --jb-date-input-border-width            | general border width defualt is `1px`                                                         |
+| --jb-date-input-border-bottom-width     | border bottom width defualt is `3px`                                                          |
+| --jb-date-input-label-font-size         | font size of date input label defualt is `0.8em`                                              |
+| --jb-date-input-placeholder-color       | input placeholder color defualt is `initial`                                                  |
+| --jb-date-input-placeholder-font-size   | place holder font size defualt is `1.1em`                                                     |
+| --jb-date-input-value-color             | date input value color default is `#1f1735`                                                   |
+| --jb-date-input-value-font-size         | date input value font-size                                                                    |
+                                                    |
+
+
+## add custom element in input box
+
+in jb-input you can put icon or any other custom html DOM in input box. to doing so you just have to place custom element in `JBDateInput` tag and add `slot="start-section"` or `slot="end-section"` to place it before or after input field.
+for better result i suggest you use `jb-date-input-inbox-element` tag but its optional and you can use your own custom tag too.
+`jb-date-input-inbox-element` will add some style to make sure your icon will place in center and will not overflow nad make your job easier if you want more controll you can skip it and use your own tag.
+example:
+
+```jsx
+<JBInput>
+    <jb-date-input-inbox-element slot="end-section">
+        <div>after</div>
+    </jb-date-input-inbox-element>
+    <jb-date-input-inbox-element slot="start-section">
+        <div>before</div>
+    </jb-date-input-inbox-element>
+</JBInput>
+```
