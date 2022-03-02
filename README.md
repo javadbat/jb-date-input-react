@@ -45,8 +45,7 @@ you can just add script tag to your html file and then use react component how e
 <script src="https://unpkg.com/jb-calendar-react"></script>
 
 ```
-
-### format
+## format
 
 defualt format of date input is 'YYYY-MM-DDTHH:mm:ss.SSS[Z]' that compatible and exact format of `new Date().toISOString()`
 you can change it however you need and `[Z]` mean the exact Z charecter that used in ISO standard format `YYYY-MM-DDTHH:mm:ss.SSSZ[Z]` => `2012-06-21T00:00:00.000+3:30Z`
@@ -58,7 +57,7 @@ you can change format by format attribute:
 
 ```
 
-### valueType
+## valueType
 
 we have 3 value type:
 
@@ -68,7 +67,7 @@ we have 3 value type:
     <JBDateInput value="1399-05-01T12:05:39.530Z" valueType="JALALI"/>
 ```
 
-### min and max date limit
+## min and max date limit
 
 you can set minimum date and maximum date range for your app 
 
@@ -76,7 +75,7 @@ you can set minimum date and maximum date range for your app
  <JBDateInput label="تاریخ شروع " value="2020-08-10T08:51:23.176Z" min="2020-08-05T08:51:23.176Z" max="2020-08-15T08:51:23.176Z">
  </JBDateInput>
 ```
-### custom validation
+## custom validation
 
 beside of min and max you can also set your own custom validation like any other jb react components family to achive this you must create a array of validations and pass it to validationList props.
 
@@ -124,7 +123,7 @@ const MyForm = (props) => {
 
 ```
 
-### events
+## events
 - onSelect
 ```js 
     <JBDateInput onSelect={(event) => {console.log(event.target.value)}}></JBDateInput>
@@ -139,7 +138,7 @@ const MyForm = (props) => {
     <JBDateInput onKeyup={(event) => {console.log(event.target.value)}}></JBDateInput>
 ```
 
-### date input type
+## date input type
 
 jb-calendar support both jalali and gregorian(miladi) calendar input type. like value-type that let you determine how you want to provide/expect data to/from JBDateInput you can specify how user must fill the date input.
 to achive this you have to set `inputType` props or set `inputType` object to component  directly using your elements ref.
@@ -158,8 +157,14 @@ const elementRef =  React.createRef();
 elementRef.current.inputType = "GREGORIAN" 
 elementRef.current.inputType = "JALALI"
 ```
+## set default date for calendar when opened
 
-### customize calendar button trigger
+when date input value is empty we show today year and month in opened calendar by default but you can change it to another date. for example you want user fill they birthdate you can set it to 20 years ago so user can pick his/her birthday easier and faster. to doing so all you have to do is to use `calendarDefaultDateView`function like this:
+
+```jsx
+<JBDateInput inputType="JALALI" calendarDefaultDateView={{year:1350, month:3}}></JBDateInput>
+```
+## customize calendar button trigger
 
 you can change calendar icon base on your own need to doing so you just have to put your custom html inside the react component with `slot="calendar-trigger-icon"` like below:
 
