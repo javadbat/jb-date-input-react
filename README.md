@@ -203,7 +203,6 @@ if you want to set a custom style to this react-component all you need is to set
 | --jb-date-input-placeholder-font-size   | place holder font size defualt is `1.1em`                                                     |
 | --jb-date-input-value-color             | date input value color default is `#1f1735`                                                   |
 | --jb-date-input-value-font-size         | date input value font-size                                                                    |
-                                                    |
 
 
 ## add custom element in input box
