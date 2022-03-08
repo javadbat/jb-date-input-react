@@ -27,7 +27,7 @@ npm i jb-input-react
 2- import package in your jsx file:
 
 ```js
-import JBDateInput from 'jb-input-react';
+import JBDateInput from 'jb-date-input-react';
 ```
 
 3- use it in your jsx file like any other tag:
@@ -36,15 +36,6 @@ import JBDateInput from 'jb-input-react';
 <JBDateInput label="date label"></JBDateInput>
 ```
 
-#### using cdn
-
-you can just add script tag to your html file and then use react component how ever you need
-
-```HTML
-<script src="https://unpkg.com/jb-date-input-react"></script>
-<script src="https://unpkg.com/jb-calendar-react"></script>
-
-```
 ## format
 
 defualt format of date input is 'YYYY-MM-DDTHH:mm:ss.SSS[Z]' that compatible and exact format of `new Date().toISOString()`
