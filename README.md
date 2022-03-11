@@ -185,24 +185,40 @@ you can change calendar icon base on your own need to doing so you just have to 
 ### set custom style
 
 in some cases in your project you need to change defualt style of react-component for example you need zero margin or different border-radius and etc.    
-if you want to set a custom style to this react-component all you need is to set css variable in parent scope of react-component 
-| css variable name                       | description                                                                                   |
-| -------------                           | -------------                                                                                 |
-| --jb-date-input-margin                  | web-component margin defualt is `0 12px`                                                      |
-| --jb-date-input-border-radius           | web-component border-radius defualt is `16px`                                                 |
-| --jb-date-input-border-color            | border color of select in normal mode                                                         |
-| --jb-date-input-border-color-focus      | border color when user focus on input                                                         |
-| --jb-date-input-bgcolor                 | background color of input                                                                     |
-| --jb-date-input-message-box-display     | defualt is block but if you set it to none message box will be hidden                         |
-| --jb-date-input-text-align              | text align of input                                                                           |
-| --jb-date-input-box-height              | height of input box                                                                           |
-| --jb-date-input-border-width            | general border width defualt is `1px`                                                         |
-| --jb-date-input-border-bottom-width     | border bottom width defualt is `3px`                                                          |
-| --jb-date-input-label-font-size         | font size of date input label defualt is `0.8em`                                              |
-| --jb-date-input-placeholder-color       | input placeholder color defualt is `initial`                                                  |
-| --jb-date-input-placeholder-font-size   | place holder font size defualt is `1.1em`                                                     |
-| --jb-date-input-value-color             | date input value color default is `#1f1735`                                                   |
-| --jb-date-input-value-font-size         | date input value font-size                                                                    |
+if you want to set a custom style to this react-component all you need is to set css variable in parent scope of react-component.    
+#### usage example:
+
+```css
+body{
+/* if you need more margin */
+  --jb-date-input-margin: 16px 32px
+/* if you dont waant rounded corner */
+  --jb-date-input-border-radius:0px;
+/* if you want different text color*/
+  --jb-date-input-value-color:red;
+}
+```
+#### variable list
+
+| css variable name                          | description                                                                                   |
+| -------------                              | -------------                                                                                 |
+| --jb-date-input-margin                     | web-component margin defualt is `0 12px`                                                      |
+| --jb-date-input-border-radius              | web-component border-radius defualt is `16px`                                                 |
+| --jb-date-input-border-color               | border color of select in normal mode                                                         |
+| --jb-date-input-border-color-focus         | border color when user focus on input                                                         |
+| --jb-date-input-bgcolor                    | background color of input                                                                     |
+| --jb-date-input-message-box-display        | defualt is block but if you set it to none message box will be hidden                         |
+| --jb-date-input-text-align                 | text align of input                                                                           |
+| --jb-date-input-box-height                 | height of input box                                                                           |
+| --jb-date-input-border-width               | general border width defualt is `1px`                                                         |
+| --jb-date-input-border-bottom-width        | border bottom width defualt is `3px`                                                          |
+| --jb-date-input-label-font-size            | font size of date input label defualt is `0.8em`                                              |
+| --jb-date-input-placeholder-color          | input placeholder color defualt is `initial`                                                  |
+| --jb-date-input-placeholder-font-size      | place holder font size defualt is `1.1em`                                                     |
+| --jb-date-input-value-color                | date input value color default is `#1f1735`                                                   |
+| --jb-date-input-value-font-size            | date input value font-size                                                                    |
+| --jb-date-input-calender-wrapper-bg-color  | calender background color default color is `#fff`                                             |
+| --jb-date-input-calendar-wrapper-z-index   | opend calendar `z-index` is `10` but you can change it to number you want                     |
 
 
 ## add custom element in input box
