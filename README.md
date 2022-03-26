@@ -155,7 +155,11 @@ when date input value is empty we show today year and month in opened calendar b
 ```jsx
 <JBDateInput inputType="JALALI" calendarDefaultDateView={{year:1350, month:3}}></JBDateInput>
 ```
-
+## show persian number
+if you want to show persian number instead of English number char you just have to set `usePersianNumber` prop like this:
+```jsx
+<JBDateInput usePersianNumber={true}></JBDateInput>
+```
 ## customize calendar button trigger
 
 you can change calendar icon base on your own need to doing so you just have to put your custom html inside the react component with `slot="calendar-trigger-icon"` like below:
