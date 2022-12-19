@@ -28,8 +28,8 @@ this component is a simple react component that use [jb-date-input](https://gith
 - support `esm` import build for modern `ECMA Script` nodejs app. 
 
 Demo & Sample    
-in github: <https://javadbat.github.io/jb-date-input/>
-in codepen: <https://codepen.io/javadbat/pen/qBRyYKY>
+in github: <https://javadbat.github.io/jb-date-input/>    
+in codepen: <https://codepen.io/javadbat/pen/qBRyYKY>    
 
 ## instructions
 
