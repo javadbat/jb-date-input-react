@@ -1,16 +1,35 @@
 # JBDateInput
 
-react component form element to get date from user
+react component date input (picker) to get date (jalali & gregorian) from user.
+this component is a simple react component that use [jb-date-input](https://github.com/javadbat/jb-date-input) inside and its just a simple wrapper for it so i suggest you to read jb-date-input document too for more updated document.    
 
 - support jalali date as well as gregorian date
 
 - support keyboard arrow key and fast date input with keyboard
 
-- customizable style with css variable
+- customizable style with css variables
 
 - can set min and max date value
 
-sample: <https://codepen.io/javadbat/pen/qBRyYKY>
+- web component so it can be used in every framework and even purejs project
+
+- responsive and mobile friendly (support swipe in touch devices and handle virtual keyboard)
+
+- support typescript
+
+- good typing experience for desktop user
+
+- it use your page font by default. 
+
+- have 3 value type so you can get inputed value in gregorian, jalali or timestamp base on your project need
+
+- customizable value format so you can get your value in standard iso format or custom format like `1400/12/08` or `1400_12_08`
+
+- support `esm` import build for modern `ECMA Script` nodejs app. 
+
+Demo & Sample    
+in github: <https://javadbat.github.io/jb-date-input/>
+in codepen: <https://codepen.io/javadbat/pen/qBRyYKY>
 
 ## instructions
 
@@ -204,26 +223,38 @@ body{
 }
 ```
 #### variable list
+this list may be outdated so i suggest you to read [jb-date-input](https://github.com/javadbat/jb-date-input) doc for more updated list of styles
 
-| css variable name                          | description                                                                                   |
-| -------------                              | -------------                                                                                 |
-| --jb-date-input-margin                     | web-component margin defualt is `0 12px`                                                      |
-| --jb-date-input-border-radius              | web-component border-radius defualt is `16px`                                                 |
-| --jb-date-input-border-color               | border color of select in normal mode                                                         |
-| --jb-date-input-border-color-focus         | border color when user focus on input                                                         |
-| --jb-date-input-bgcolor                    | background color of input                                                                     |
-| --jb-date-input-message-box-display        | defualt is block but if you set it to none message box will be hidden                         |
-| --jb-date-input-text-align                 | text align of input                                                                           |
-| --jb-date-input-box-height                 | height of input box                                                                           |
-| --jb-date-input-border-width               | general border width defualt is `1px`                                                         |
-| --jb-date-input-border-bottom-width        | border bottom width defualt is `3px`                                                          |
-| --jb-date-input-label-font-size            | font size of date input label defualt is `0.8em`                                              |
-| --jb-date-input-placeholder-color          | input placeholder color defualt is `initial`                                                  |
-| --jb-date-input-placeholder-font-size      | place holder font size defualt is `1.1em`                                                     |
-| --jb-date-input-value-color                | date input value color default is `#1f1735`                                                   |
-| --jb-date-input-value-font-size            | date input value font-size                                                                    |
-| --jb-date-input-calender-wrapper-bg-color  | calender background color default color is `#fff`                                             |
-| --jb-date-input-calendar-wrapper-z-index   | opend calendar `z-index` is `10` but you can change it to number you want                     |
+| css variable name                             | description                                                               |
+| -------------                                 | -------------                                                             |
+| --jb-date-input-margin                        | web-component margin default is `0 12px`                                  |
+| --jb-date-input-border-radius                 | web-component border-radius default is `16px`                             |
+| --jb-date-input-border-color                  | border color of select in normal mode                                     |
+| --jb-date-input-border-color-focus            | border color when user focus on input                                     |
+| --jb-date-input-bgcolor                       | background color of input                                                 |
+| --jb-date-input-message-box-display           | default is block but if you set it to none message box will be hidden     |
+| --jb-date-input-message-box-color             | change color of message under box                                         | 
+| --jb-date-input-message-box-color-error       | change color of message under box                                         |
+| --jb-date-input-message-box-font-size         | font-size of message box under the input box                              |
+| --jb-date-input-message-box-font-weight       | font-weight of message box under the input box                            |
+| --jb-date-input-message-box-padding           | font-size of message box under the input box                              | 
+| --jb-date-input-text-align                    | text align of input                                                       |
+| --jb-date-input-box-height                    | height of input box                                                       |
+| --jb-date-input-border-width                  | general border width default is `1px`                                     |
+| --jb-date-input-border-bottom-width           | border bottom width default is `3px`                                      |
+| --jb-date-input-label-font-size               | font size of date input label default is `0.8em`                          |
+| --jb-date-input-label-margin                  | change label margin default is `0 4px`                                    |
+| --jb-date-input-label-weight                  | label font-weight default is normal                                       |
+| --jb-date-input-placeholder-color             | input placeholder color default is `initial`                              |
+| --jb-date-input-placeholder-font-size         | place holder font size default is `1.1em`                                 |
+| --jb-date-input-value-color                   | date input value color default is `#1f1735`                               |
+| --jb-date-input-value-font-size               | date input value font-size                                                |
+| --jb-date-input-calender-wrapper-bg-color     | calender background color default color is `#fff`                         |
+| --jb-date-input-calendar-wrapper-z-index      | opend calendar `z-index` is `10` but you can change it to number you want |
+| --jb-date-input-calender-wrapper-border-radius| calendar border radius default is `24px`                                  |
+| --jb-date-input-input-margin                  | input margin default is `4px 0`                                           |
+| --jb-date-input-box-shadow                    | input box-shadow default is none                                          |
+| --jb-date-input-box-shadow-focus              | input box-shadow when input is focused default is none                    |
 
 
 ## add custom element in input box
