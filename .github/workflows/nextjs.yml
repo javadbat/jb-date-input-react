@@ -26,6 +26,9 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./docs
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -34,8 +37,6 @@ jobs:
           ls
       - name: Detect package manager
         id: detect-package-manager
-        env:
-          DEST_FOLDER: docs
         run: |
           if [ -f "${{ github.workspace }}/yarn.lock" ]; then
             echo "manager=yarn" >> $GITHUB_OUTPUT
@@ -52,8 +53,6 @@ jobs:
             exit 1
           fi
       - name: Setup Node
-        env:
-          DEST_FOLDER: docs
         uses: actions/setup-node@v3
         
         with:
@@ -68,8 +67,6 @@ jobs:
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
       - name: Restore cache
-        env:
-          DEST_FOLDER: docs
         uses: actions/cache@v3
         with:
           path: |
@@ -80,20 +77,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
-        env:
-          DEST_FOLDER: docs
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build with Next.js
-        env:
-          DEST_FOLDER: docs
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Static HTML export with Next.js
-        env:
-          DEST_FOLDER: docs
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
       - name: Upload artifact
-        env:
-          DEST_FOLDER: docs
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./out
