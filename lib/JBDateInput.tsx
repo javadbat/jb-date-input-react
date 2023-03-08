@@ -2,26 +2,29 @@ import React, { useEffect, useRef, useState, useImperativeHandle, useCallback } 
 import PropTypes, { InferProps } from 'prop-types';
 // import {type} from 'jb-date-input';
 import 'jb-date-input';
+// eslint-disable-next-line no-duplicate-imports
+import { JBDateInputWebComponent } from 'jb-date-input';
 import { useEvent } from '../../custom-hooks/UseEvent';
 
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
       interface IntrinsicElements {
-        'jb-date-input': JBDateInput
+        'jb-date-input': JBDateInputType
       }
-      interface JBDateInput extends React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement> {
+      interface JBDateInputType extends React.DetailedHTMLProps<React.HTMLAttributes<JBDateInputWebComponent>, JBDateInputWebComponent> {
         class:string,
         label: string,
         "value-type": string,
         "input-type":string,
+        ref:any,
       }
     }
 }
   
 
 const JBDateInput = React.forwardRef((props: InferProps<typeof JBDateInput.propTypes>, ref) => {
-    const element = useRef<any>();
+    const element = useRef<JBDateInputWebComponent>();
     const [refChangeCount, refChangeCountSetter] = useState(0);
     const onFormatChangeCallBackQueueRef = useRef<(()=>void)[]>([]);
     useImperativeHandle(
@@ -53,7 +56,7 @@ const JBDateInput = React.forwardRef((props: InferProps<typeof JBDateInput.propT
     useEffect(() => {
         if (props.format) {
             if (props.format !== element.current?.valueFormat) {
-                element.current.setAttribute('format', props.format);
+                element.current?.setAttribute('format', props.format);
             }
             if (onFormatChangeCallBackQueueRef.current.length > 0) {
                 onFormatChangeCallBackQueueRef.current.forEach((callBack:()=>void) => {
@@ -66,59 +69,59 @@ const JBDateInput = React.forwardRef((props: InferProps<typeof JBDateInput.propT
     }, [props.format]);
     useEffect(() => {
         if (props.max) {
-            if (props.format && props.format !== element.current.valueFormat) {
+            if (props.format && props.format !== element.current?.valueFormat) {
                 onFormatChangeCallBackQueueRef.current.push(() => {
-                    element.current.setAttribute('max', props.max);
+                    element.current?.setAttribute('max', props.max);
                 });
             } else {
-                element.current.setAttribute('max', props.max);
+                element.current?.setAttribute('max', props.max);
             }
         }
 
     }, [props.max]);
     useEffect(() => {
         if (props.min) {
-            if (props.format && props.format !== element.current.valueFormat) {
+            if (props.format && props.format !== element.current?.valueFormat) {
                 onFormatChangeCallBackQueueRef.current.push(() => {
-                    element.current.setAttribute('min', props.min);
+                    element.current?.setAttribute('min', props.min);
                 });
             } else {
-                element.current.setAttribute('min', props.min);
+                element.current?.setAttribute('min', props.min);
             }
         }
     }, [props.min]);
     useEffect(() => {
-        if (props.value) {
+        if (element.current && props.value) {
             element.current.value = props.value;
         }
     }, [props.value]);
     useEffect(() => {
-        if (Array.isArray(props.validationList)) {
+        if (element.current && Array.isArray(props.validationList)) {
             element.current.validationList = props.validationList;
         }
     }, [props.validationList]);
     useEffect(() => {
-        if (props.direction) {
+        if (element.current && props.direction) {
             element.current.setAttribute('direction', props.direction);
         }
     },[props.direction]);
     useEffect(() => {
         if (props.required) {
-            element.current.setAttribute('required', "true");
+            element.current?.setAttribute('required', "true");
         } else {
-            element.current.removeAttribute('required');
+            element.current?.removeAttribute('required');
         }
     }, [props.required]);
     useEffect(() => {
         if (typeof props.calendarDefaultDateView == "object" && props.calendarDefaultDateView.year && props.calendarDefaultDateView.month) {
-            element.current.setCalendarDefaultDateView(props.calendarDefaultDateView.year, props.calendarDefaultDateView.month, props.calendarDefaultDateView.dateType);
+            element.current?.setCalendarDefaultDateView(props.calendarDefaultDateView.year, props.calendarDefaultDateView.month, props.calendarDefaultDateView.dateType);
         }
     }, [props.calendarDefaultDateView]);
     useEffect(() => {
         if (props.usePersianNumber) {
-            element.current.setAttribute('use-persian-number', 'true');
+            element.current?.setAttribute('use-persian-number', 'true');
         } else {
-            element.current.removeAttribute('use-persian-number');
+            element.current?.removeAttribute('use-persian-number');
         }
     }, [props.usePersianNumber]);
     return (
