@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  basePath: '/docs',
+  basePath: '/jb-date-input-react',
 }
 
 module.exports = nextConfig
