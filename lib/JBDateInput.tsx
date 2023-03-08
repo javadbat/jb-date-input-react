@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState, useImperativeHandle, useCallback } from 'react';
-import PropTypes, { InferProps } from 'prop-types';
+import PropTypes from 'prop-types';
 // import {type} from 'jb-date-input';
 import 'jb-date-input';
 // eslint-disable-next-line no-duplicate-imports
-import { JBDateInputWebComponent } from 'jb-date-input';
+import { JBDateInputWebComponent, InputTypes, JBDateInputValidationItem } from 'jb-date-input';
 import { useEvent } from '../../custom-hooks/UseEvent';
 
 declare global {
@@ -13,18 +13,36 @@ declare global {
         'jb-date-input': JBDateInputType
       }
       interface JBDateInputType extends React.DetailedHTMLProps<React.HTMLAttributes<JBDateInputWebComponent>, JBDateInputWebComponent> {
-        class:string,
-        label: string,
-        "value-type": string,
-        "input-type":string,
-        ref:any,
+        class?:string,
+        label?: string,
+        "value-type"?: string,
+        "input-type"?:string,
+        // ref:React.RefObject<JBDateInputWebComponent>,
       }
     }
 }
-  
+export type JBDateInputProps = {
+    label?: string,
+    min?: string,
+    max?: string,
+    format?: string,
+    className?:string,
+    onKeyup?: (e:KeyboardEvent)=>void,
+    onChange?: (e:Event)=>void,
+    onSelect?: (e:CustomEvent)=>void,
+    valueType?: 'GREGORIAN'|'JALALI'|'TIME_STAMP',
+    inputType?: 'GREGORIAN'|'JALALI',
+    direction?: 'ltr'|'rtl',
+    value?: string,
+    validationList?: JBDateInputValidationItem[],
+    required?: boolean,
+    calendarDefaultDateView?:{ year:number, month: number, dateType:InputTypes},
+    usePersianNumber?: boolean,
+    children:React.ReactNode,
+}
 
-const JBDateInput = React.forwardRef((props: InferProps<typeof JBDateInput.propTypes>, ref) => {
-    const element = useRef<JBDateInputWebComponent>();
+const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
+    const element = useRef<JBDateInputWebComponent>(null);
     const [refChangeCount, refChangeCountSetter] = useState(0);
     const onFormatChangeCallBackQueueRef = useRef<(()=>void)[]>([]);
     useImperativeHandle(
@@ -71,7 +89,7 @@ const JBDateInput = React.forwardRef((props: InferProps<typeof JBDateInput.propT
         if (props.max) {
             if (props.format && props.format !== element.current?.valueFormat) {
                 onFormatChangeCallBackQueueRef.current.push(() => {
-                    element.current?.setAttribute('max', props.max);
+                    if(props.max){element.current?.setAttribute('max', props.max);}
                 });
             } else {
                 element.current?.setAttribute('max', props.max);
@@ -83,7 +101,7 @@ const JBDateInput = React.forwardRef((props: InferProps<typeof JBDateInput.propT
         if (props.min) {
             if (props.format && props.format !== element.current?.valueFormat) {
                 onFormatChangeCallBackQueueRef.current.push(() => {
-                    element.current?.setAttribute('min', props.min);
+                    props.min && element.current?.setAttribute('min', props.min);
                 });
             } else {
                 element.current?.setAttribute('min', props.min);
@@ -133,6 +151,7 @@ const JBDateInput = React.forwardRef((props: InferProps<typeof JBDateInput.propT
 JBDateInput.displayName = "JBDateInput";
 JBDateInput.propTypes = {
     label: PropTypes.string,
+    className:PropTypes.string,
     min: PropTypes.string,
     max: PropTypes.string,
     format: PropTypes.string,
@@ -145,8 +164,10 @@ JBDateInput.propTypes = {
     value: PropTypes.string,
     validationList: PropTypes.array,
     required: PropTypes.bool,
-    calendarDefaultDateView: PropTypes.shape({ year: PropTypes.number.isRequired, month: PropTypes.number.isRequired, dateType: PropTypes.oneOf(['GREGORIAN', 'JALALI']) }),
-    usePersianNumber: PropTypes.bool
+    calendarDefaultDateView: PropTypes.shape({ year: PropTypes.number.isRequired, month: PropTypes.number.isRequired, dateType: PropTypes.oneOf<InputTypes>([InputTypes.gregorian, InputTypes.jalali]).isRequired }),
+    // calendarDefaultDateView: PropTypes.object,
+    usePersianNumber: PropTypes.bool,
+    children:PropTypes.element
 };
 
 export default JBDateInput;
