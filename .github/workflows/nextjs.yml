@@ -35,6 +35,8 @@ jobs:
           node scripts/setup-npm-version.js
       - name: Detect package manager
         id: detect-package-manager
+        env:
+          DEST_FOLDER: docs
         run: |
           if [ -f "${{ github.workspace }}/yarn.lock" ]; then
             echo "manager=yarn" >> $GITHUB_OUTPUT
