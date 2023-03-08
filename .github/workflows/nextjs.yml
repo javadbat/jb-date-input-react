@@ -29,6 +29,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: see file list
+        run: |
+          -ls
       - name: Detect package manager
         id: detect-package-manager
         run: |
