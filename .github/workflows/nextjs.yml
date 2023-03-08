@@ -32,7 +32,6 @@ jobs:
       - name: see file list
         run: |
           ls
-          node scripts/setup-npm-version.js
       - name: Detect package manager
         id: detect-package-manager
         env:
