@@ -11,7 +11,7 @@ function IntroSection() {
       <ComponentName>JBDateInputReact</ComponentName>
       <ComponentSubtitle>ReactJs Jalali Date Picker</ComponentSubtitle>
       <ComponentSubtitle>کامپوننت تقویم شمسی برای ریاکت</ComponentSubtitle>
-      <JBDateInput></JBDateInput>
+      <JBDateInput>{}</JBDateInput>
     </IntroWrapper>
   );
 }
