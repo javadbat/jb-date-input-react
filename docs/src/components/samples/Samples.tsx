@@ -2,6 +2,7 @@ import { JBDateInputValueObject } from 'jb-date-input/dist/Types';
 import React from 'react';
 import { FormalTheme, SamplesSectionWrapper, SamplesTitle } from './styled';
 import dynamic from 'next/dynamic';
+import { InputTypes } from 'jb-date-input';
 const JBDateInput = dynamic(() => import('jb-date-input-react').then(module => module.default), {
   ssr: false,
 });
@@ -28,13 +29,12 @@ function Samples() {
         Samples
       </SamplesTitle>
       <JBDateInput label="simple date:"></JBDateInput>
-      <JBDateInput label="with under box message:" message="here you can hint user"></JBDateInput>
       <JBDateInput label="with persian number" usePersianNumber={true}></JBDateInput>
       <JBDateInput label="with default value:" value="2020-08-10T08:51:23.176Z"></JBDateInput>
       <JBDateInput label="with min and max value:" value="2020-08-10T08:51:23.176Z" min="2020-08-05T08:51:23.176Z" max="2020-08-15T08:51:23.176Z"></JBDateInput>
       <JBDateInput label="with validation" validationList={validationList}></JBDateInput>
       <JBDateInput label="gregorian date:" inputType="GREGORIAN"></JBDateInput>
-      <JBDateInput label="with default opened calendar date" inputType="JALALI" calendarDefaultDateView={{ year: 1350, month: 3 }}></JBDateInput>
+      <JBDateInput label="with default opened calendar date" inputType="JALALI" calendarDefaultDateView={{ year: 1350, month: 3, dateType:InputTypes.jalali }}></JBDateInput>
       <JBDateInput label="with custom icon">
         <div slot="calendar-trigger-icon">
           <svg xmlns="http://www.w3.org/2000/svg" version="1.1" x="0px" y="0px" viewBox="0 0 610.398 610.398">
