@@ -1,8 +1,9 @@
-import { JBDateInputValueObject } from 'jb-date-input/dist/Types';
+import 'jb-date-input';
 import React from 'react';
 import { FormalTheme, SamplesSectionWrapper, SamplesTitle } from './styled';
 import dynamic from 'next/dynamic';
-import { InputTypes } from 'jb-date-input';
+// eslint-disable-next-line no-duplicate-imports
+import { InputTypes,JBDateInputValueObject } from 'jb-date-input';
 const JBDateInput = dynamic(() => import('jb-date-input-react').then(module => module.default), {
   ssr: false,
 });
