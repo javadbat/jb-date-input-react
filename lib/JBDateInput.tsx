@@ -10,7 +10,8 @@ declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
       interface IntrinsicElements {
-        'jb-date-input': JBDateInputType
+        'jb-date-input': JBDateInputType,
+        'jb-date-input-inbox-element':HTMLDivElement
       }
       interface JBDateInputType extends React.DetailedHTMLProps<React.HTMLAttributes<JBDateInputWebComponent>, JBDateInputWebComponent> {
         class?:string,
