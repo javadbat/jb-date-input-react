@@ -28,7 +28,7 @@ this component is a simple react component that use [jb-date-input](https://gith
 - support `esm` import build for modern `ECMA Script` nodejs app. 
 
 Demo & Sample    
-in github: <https://javadbat.github.io/jb-date-input/>    
+in github: <https://javadbat.github.io/jb-date-input-react/>    
 in codepen: <https://codepen.io/javadbat/pen/qBRyYKY>    
 
 ## instructions
@@ -46,7 +46,7 @@ npm i jb-input-react
 2- import package in your jsx file:
 
 ```js
-import JBDateInput from 'jb-date-input-react';
+import {JBDateInput} from 'jb-date-input-react';
 ```
 
 3- use it in your jsx file like any other tag:
@@ -265,12 +265,12 @@ for better result i suggest you use `jb-date-input-inbox-element` tag but its op
 example:
 
 ```jsx
-<JBInput>
+<JBDateInput>
     <jb-date-input-inbox-element slot="end-section">
         <div>after</div>
     </jb-date-input-inbox-element>
     <jb-date-input-inbox-element slot="start-section">
         <div>before</div>
     </jb-date-input-inbox-element>
-</JBInput>
+</JBDateInput>
 ```
