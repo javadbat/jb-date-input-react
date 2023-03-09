@@ -39,7 +39,7 @@ export type JBDateInputProps = {
     required?: boolean,
     calendarDefaultDateView?:{ year:number, month: number, dateType:InputTypes},
     usePersianNumber?: boolean,
-    children:React.ReactNode | undefined | null,
+    children:React.ReactNode | string | HTMLElement | HTMLCollection | undefined | null,
 }
 
 const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
