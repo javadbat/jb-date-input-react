@@ -57,14 +57,14 @@ function Samples() {
           </svg>
         </div>
       </JBDateInput>
-      {/* <JBDateInput label="with inner-box section">
+      <JBDateInput label="with inner-box section">
         <jb-date-input-inbox-element slot="end-section">
           <div>after</div>
         </jb-date-input-inbox-element>
         <jb-date-input-inbox-element slot="start-section">
           <div>before</div>
         </jb-date-input-inbox-element>
-      </JBDateInput> */}
+      </JBDateInput>
       <FormalTheme label="more formal look">{}</FormalTheme>
 
     </SamplesSectionWrapper>

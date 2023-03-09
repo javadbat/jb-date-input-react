@@ -1,17 +1,20 @@
-import React, { useEffect, useRef, useState, useImperativeHandle, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useImperativeHandle, useCallback, DOMAttributes } from 'react';
 import PropTypes from 'prop-types';
 // import {type} from 'jb-date-input';
 import 'jb-date-input';
 // eslint-disable-next-line no-duplicate-imports
-import { JBDateInputWebComponent, InputTypes, JBDateInputValidationItem } from 'jb-date-input';
+import { JBDateInputWebComponent, InputTypes, JBDateInputValidationItem, JBDDateInputInboxElementWebComponent } from 'jb-date-input';
 import { useEvent } from '../../custom-hooks/UseEvent';
 
+type CustomEvents<K extends string> = { [key in K] : (event: CustomEvent) => void };
+
+type CustomElement<T, K extends string> = Partial<T & DOMAttributes<T> & { children: any } & CustomEvents<`on${K}`>>;
 declare global {
     // eslint-disable-next-line @typescript-eslint/no-namespace
     namespace JSX {
       interface IntrinsicElements {
         'jb-date-input': JBDateInputType,
-        'jb-date-input-inbox-element':HTMLDivElement
+        'jb-date-input-inbox-element':CustomElement<JBDDateInputInboxElementWebComponent,'Click'>
       }
       interface JBDateInputType extends React.DetailedHTMLProps<React.HTMLAttributes<JBDateInputWebComponent>, JBDateInputWebComponent> {
         class?:string,
@@ -39,7 +42,7 @@ export type JBDateInputProps = {
     required?: boolean,
     calendarDefaultDateView?:{ year:number, month: number, dateType:InputTypes},
     usePersianNumber?: boolean,
-    children:React.ReactNode | string | HTMLElement | HTMLCollection | undefined | null,
+    children:any,
 }
 
 const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
@@ -168,7 +171,7 @@ JBDateInput.propTypes = {
     calendarDefaultDateView: PropTypes.shape({ year: PropTypes.number.isRequired, month: PropTypes.number.isRequired, dateType: PropTypes.oneOf<InputTypes>([InputTypes.gregorian, InputTypes.jalali]).isRequired }),
     // calendarDefaultDateView: PropTypes.object,
     usePersianNumber: PropTypes.bool,
-    children:PropTypes.element
+    // children:PropTypes.element
 };
 
 export default JBDateInput;
