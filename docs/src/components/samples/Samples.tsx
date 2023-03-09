@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react';
 import { FormalTheme, SamplesSectionWrapper, SamplesTitle } from './styled';
 import dynamic from 'next/dynamic';
-// eslint-disable-next-line no-duplicate-imports
-// import {JBDateInputValueObject } from 'jb-date-input-react';
-// import {InputTypes as JBDateInputInputTypes} from 'jb-date-input/dist/web-component/jb-date-input/lib/Types';
+import {JBDateInputValueObject } from 'jb-date-input-react';
 enum InputTypes {
   jalali = 'JALALI',
   gregorian = 'GREGORIAN'
@@ -17,7 +15,7 @@ const validationList = [
     message: 'تاریخ باید تنها در قرن 13 شمسی باشد'
   },
   {
-    validator: (inputedText: string, valueObject: any, valueText: string) => {
+    validator: (inputedText: string, valueObject: JBDateInputValueObject, valueText: string) => {
       //you can use raw inputed text or formatted text in expected value in argumants
       //you have access to both jalali and gregorian date object here in valueObject
       // remember valueObject and valueText are both empty and null when date is incomplete
