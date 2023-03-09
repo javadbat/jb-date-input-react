@@ -12,5 +12,6 @@ export const InstallationTitle = styled.h2`
         text-align: center;
 `;
 export const CodeBox = styled(SyntaxHighlighter)`
-    width: 400px;
+    max-width: 400px;
+    width: calc(100% - 64px);
 `;

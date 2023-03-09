@@ -13,6 +13,13 @@ export const SamplesTitle = styled.h2`
         color:#101010;
         text-align: center;
 `;
+export const SamplesWrapper = styled.div`
+  max-width: 400px;
+  width: calc(100% - 32px);
+  jb-date-input{
+    width: 100%;
+  }
+`;
 export const FormalTheme = styled(JBDateInput)`
   --jb-date-input-border-radius:0;
   --jb-date-input-border-color:#888;
@@ -26,4 +33,7 @@ export const FormalTheme = styled(JBDateInput)`
   --jb-date-input-calender-wrapper-bg-color:#fefefe;
   --jb-date-input-calender-wrapper-border-radius:0;
   --jb-calendar-arrow-button-border-radius:0;
+`;
+export const RTLJBDateInput = styled(JBDateInput)`
+direction: rtl;
 `;

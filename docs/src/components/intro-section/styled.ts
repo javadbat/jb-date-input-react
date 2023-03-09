@@ -16,6 +16,11 @@ export const ComponentName= styled.h1`
 font-size: 5rem;
 font-weight: 800;
 color:#010101;
+text-align: center;
+${down("lg")}{
+    font-size: 2rem;
+    word-break: break-all;
+    }
 `;
 export const ComponentSubtitle = styled.h2`
     color:#404040;
