@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import dynamic from 'next/dynamic';
-const JBDateInput = dynamic(() => import('jb-date-input-react').then(module => module.default), {
+const JBDateInput = dynamic(() => import('jb-date-input-react').then(module => module.JBDateInput), {
   ssr: false,
 });
 export const SamplesSectionWrapper = styled.section`

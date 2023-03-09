@@ -3,7 +3,7 @@ import { ComponentName, ComponentSubtitle, IntroWrapper } from './styled';
 import dynamic from 'next/dynamic';
 
 function IntroSection() {
-  const JBDateInput = dynamic(() => import('jb-date-input-react').then(module => module.default), {
+  const JBDateInput = dynamic(() => import('jb-date-input-react').then(module => module.JBDateInput), {
     ssr: false,
   });
   return (

@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 // import {type} from 'jb-date-input';
 import 'jb-date-input';
 // eslint-disable-next-line no-duplicate-imports
-import { JBDateInputWebComponent, InputTypes, JBDateInputValidationItem, JBDDateInputInboxElementWebComponent } from 'jb-date-input';
+import { JBDateInputWebComponent, JBDateInputInputTypes, JBDateInputValidationItem, JBDDateInputInboxElementWebComponent,JBDateInputValueObject } from 'jb-date-input';
 import { useEvent } from '../../custom-hooks/UseEvent';
 
+export {JBDateInputInputTypes,JBDateInputValueObject};
 type CustomEvents<K extends string> = { [key in K] : (event: CustomEvent) => void };
 
 type CustomElement<T, K extends string> = Partial<T & DOMAttributes<T> & { children: any } & CustomEvents<`on${K}`>>;
@@ -40,7 +41,7 @@ export type JBDateInputProps = {
     value?: string,
     validationList?: JBDateInputValidationItem[],
     required?: boolean,
-    calendarDefaultDateView?:{ year:number, month: number, dateType:InputTypes},
+    calendarDefaultDateView?:{ year:number, month: number, dateType:JBDateInputInputTypes},
     usePersianNumber?: boolean,
     children:any,
 }
@@ -168,10 +169,10 @@ JBDateInput.propTypes = {
     value: PropTypes.string,
     validationList: PropTypes.array,
     required: PropTypes.bool,
-    calendarDefaultDateView: PropTypes.shape({ year: PropTypes.number.isRequired, month: PropTypes.number.isRequired, dateType: PropTypes.oneOf<InputTypes>([InputTypes.gregorian, InputTypes.jalali]).isRequired }),
+    calendarDefaultDateView: PropTypes.shape({ year: PropTypes.number.isRequired, month: PropTypes.number.isRequired, dateType: PropTypes.oneOf<JBDateInputInputTypes>([JBDateInputInputTypes.gregorian, JBDateInputInputTypes.jalali]).isRequired }),
     // calendarDefaultDateView: PropTypes.object,
     usePersianNumber: PropTypes.bool,
     // children:PropTypes.element
 };
 
-export default JBDateInput;
+export {JBDateInput};
