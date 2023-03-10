@@ -1,4 +1,4 @@
-# JBDateInput
+# jb-date-input-react
 
 react component date input (picker) to get date (jalali & gregorian) from user.
 this component is a simple react component that use [jb-date-input](https://github.com/javadbat/jb-date-input) inside and its just a simple wrapper for it so i suggest you to read jb-date-input document too for more updated document.    
@@ -40,7 +40,7 @@ in codepen: <https://codepen.io/javadbat/pen/qBRyYKY>
 1- install package:
 
 ```command
-npm i jb-input-react
+npm i jb-date-input-react
 ```
 
 2- import package in your jsx file:
