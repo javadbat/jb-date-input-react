@@ -1,4 +1,7 @@
 #changelog
+## [2.0.20] - 2023-3-30
+### fixed
+- fix trigger button bug by updating jb-date-input to v3.7.13
 ## [2.0.2] - 2023-3-8
 ### fixed
 - fix typescript problems
