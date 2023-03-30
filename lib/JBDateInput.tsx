@@ -21,6 +21,7 @@ declare global {
       interface JBDateInputType extends React.DetailedHTMLProps<React.HTMLAttributes<JBDateInputWebComponent>, JBDateInputWebComponent> {
         class?:string,
         label?: string,
+        name?:string,
         "value-type"?: string,
         "input-type"?:string,
         // ref:React.RefObject<JBDateInputWebComponent>,
@@ -29,6 +30,7 @@ declare global {
 }
 export type JBDateInputProps = {
     label?: string,
+    name?:string,
     min?: string,
     max?: string,
     format?: string,
@@ -47,7 +49,7 @@ export type JBDateInputProps = {
     children:any,
 }
 
-const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
+export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
     const element = useRef<JBDateInputWebComponent>(null);
     const [refChangeCount, refChangeCountSetter] = useState(0);
     const onFormatChangeCallBackQueueRef = useRef<(()=>void)[]>([]);
@@ -149,7 +151,7 @@ const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
         }
     }, [props.usePersianNumber]);
     return (
-        <jb-date-input class={props.className ? props.className : ""} label={props.label} value-type={props.valueType ? props.valueType : 'GREGORIAN'} ref={element} input-type={props.inputType ? props.inputType : 'JALALI'}>
+        <jb-date-input class={props.className ? props.className : ""} name={props.name} label={props.label} value-type={props.valueType ? props.valueType : 'GREGORIAN'} ref={element} input-type={props.inputType ? props.inputType : 'JALALI'}>
             {props.children}
         </jb-date-input>
     );
@@ -157,6 +159,7 @@ const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
 JBDateInput.displayName = "JBDateInput";
 JBDateInput.propTypes = {
     label: PropTypes.string,
+    name:PropTypes.string,
     className:PropTypes.string,
     min: PropTypes.string,
     max: PropTypes.string,
@@ -175,5 +178,3 @@ JBDateInput.propTypes = {
     usePersianNumber: PropTypes.bool,
     // children:PropTypes.element
 };
-
-export {JBDateInput};
