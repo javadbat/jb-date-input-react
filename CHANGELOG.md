@@ -1,4 +1,7 @@
 #changelog
+## [2.1.0] - 2023-3-7
+### new features
+- add `JBDateInputEventType` to event type for better event.target detection in typescript
 ## [2.0.21] - 2023-3-30
 ### fixed
 - fix mandatory React children props

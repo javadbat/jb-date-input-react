@@ -28,6 +28,9 @@ declare global {
       }
     }
 }
+export type JBDateInputEventType<T> = T & {
+    target: JBDateInputWebComponent
+}
 export type JBDateInputProps = {
     label?: string,
     name?:string,
@@ -35,9 +38,9 @@ export type JBDateInputProps = {
     max?: string,
     format?: string,
     className?:string,
-    onKeyup?: (e:KeyboardEvent)=>void,
-    onChange?: (e:Event)=>void,
-    onSelect?: (e:CustomEvent)=>void,
+    onKeyup?: (e:JBDateInputEventType<KeyboardEvent>)=>void,
+    onChange?: (e:JBDateInputEventType<Event>)=>void,
+    onSelect?: (e:JBDateInputEventType<CustomEvent>)=>void,
     valueType?: 'GREGORIAN'|'JALALI'|'TIME_STAMP',
     inputType?: 'GREGORIAN'|'JALALI',
     direction?: 'ltr'|'rtl',
@@ -61,17 +64,17 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
     useEffect(() => {
         refChangeCountSetter(refChangeCount + 1);
     }, [element.current]);
-    const onchange = useCallback((e) => {
+    const onchange = useCallback((e:JBDateInputEventType<Event>) => {
         if (props.onChange) {
             props.onChange(e);
         }
     }, [props.onChange]);
-    const onKeyup = useCallback((e) => {
+    const onKeyup = useCallback((e:JBDateInputEventType<KeyboardEvent>) => {
         if (props.onKeyup) {
             props.onKeyup(e);
         }
     }, [props.onKeyup]);
-    const onSelect = useCallback((e) => {
+    const onSelect = useCallback((e:JBDateInputEventType<CustomEvent>) => {
         if (props.onSelect) {
             props.onSelect(e);
         }
