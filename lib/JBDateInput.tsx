@@ -44,7 +44,7 @@ export type JBDateInputProps = {
     valueType?: 'GREGORIAN'|'JALALI'|'TIME_STAMP',
     inputType?: 'GREGORIAN'|'JALALI',
     direction?: 'ltr'|'rtl',
-    value?: string,
+    value: string | null | undefined,
     validationList?: JBDateInputValidationItem[],
     required?: boolean,
     calendarDefaultDateView?:{ year:number, month: number, dateType:JBDateInputInputTypes},

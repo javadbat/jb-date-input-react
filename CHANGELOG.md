@@ -1,4 +1,7 @@
 #changelog
+## [2.1.1] - 2023-10-17
+### fixed
+- fix value PropType to accept `null` value type
 ## [2.1.0] - 2023-3-7
 ### new features
 - add `JBDateInputEventType` to event type for better event.target detection in typescript
