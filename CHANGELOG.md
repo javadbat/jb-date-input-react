@@ -1,4 +1,7 @@
 #changelog
+## [2.2.0] - 2023-10-20
+### new features
+- add support for `Date` type value
 ## [2.1.1] - 2023-10-17
 ### fixed
 - fix value PropType to accept `null` value type

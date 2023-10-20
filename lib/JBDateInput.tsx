@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState, useImperativeHandle, useCallback, DOMAttributes } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 // import {type} from 'jb-date-input';
 import 'jb-date-input';
 // eslint-disable-next-line no-duplicate-imports
@@ -33,6 +33,7 @@ export type JBDateInputEventType<T> = T & {
 }
 export type JBDateInputProps = {
     label?: string,
+    style?:string,
     name?:string,
     min?: string,
     max?: string,
@@ -44,7 +45,7 @@ export type JBDateInputProps = {
     valueType?: 'GREGORIAN'|'JALALI'|'TIME_STAMP',
     inputType?: 'GREGORIAN'|'JALALI',
     direction?: 'ltr'|'rtl',
-    value: string | null | undefined,
+    value: string | Date | null | undefined,
     validationList?: JBDateInputValidationItem[],
     required?: boolean,
     calendarDefaultDateView?:{ year:number, month: number, dateType:JBDateInputInputTypes},
@@ -125,6 +126,13 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
         }
     }, [props.value]);
     useEffect(() => {
+        if (element.current) {
+            if(typeof props.style == "string"){
+                element.current.setAttribute("style",props.style);
+            }
+        }
+    }, [props.style]);
+    useEffect(() => {
         if (element.current && Array.isArray(props.validationList)) {
             element.current.validationList = props.validationList;
         }
@@ -160,24 +168,24 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
     );
 });
 JBDateInput.displayName = "JBDateInput";
-JBDateInput.propTypes = {
-    label: PropTypes.string,
-    name:PropTypes.string,
-    className:PropTypes.string,
-    min: PropTypes.string,
-    max: PropTypes.string,
-    format: PropTypes.string,
-    onKeyup: PropTypes.func,
-    onChange: PropTypes.func,
-    onSelect: PropTypes.func,
-    valueType: PropTypes.oneOf(['GREGORIAN', 'JALALI', 'TIME_STAMP']),
-    inputType: PropTypes.oneOf(['GREGORIAN', 'JALALI']),
-    direction: PropTypes.oneOf(['ltr', 'rtl']),
-    value: PropTypes.string,
-    validationList: PropTypes.array,
-    required: PropTypes.bool,
-    calendarDefaultDateView: PropTypes.shape({ year: PropTypes.number.isRequired, month: PropTypes.number.isRequired, dateType: PropTypes.oneOf<JBDateInputInputTypes>([JBDateInputInputTypes.gregorian, JBDateInputInputTypes.jalali]).isRequired }),
-    // calendarDefaultDateView: PropTypes.object,
-    usePersianNumber: PropTypes.bool,
-    // children:PropTypes.element
-};
+// JBDateInput.propTypes = {
+//     label: PropTypes.string,
+//     name:PropTypes.string,
+//     className:PropTypes.string,
+//     min: PropTypes.string,
+//     max: PropTypes.string,
+//     format: PropTypes.string,
+//     onKeyup: PropTypes.func,
+//     onChange: PropTypes.func,
+//     onSelect: PropTypes.func,
+//     valueType: PropTypes.oneOf(['GREGORIAN', 'JALALI', 'TIME_STAMP']),
+//     inputType: PropTypes.oneOf(['GREGORIAN', 'JALALI']),
+//     direction: PropTypes.oneOf(['ltr', 'rtl']),
+//     value: PropTypes.string,
+//     validationList: PropTypes.array,
+//     required: PropTypes.bool,
+//     calendarDefaultDateView: PropTypes.shape({ year: PropTypes.number.isRequired, month: PropTypes.number.isRequired, dateType: PropTypes.oneOf<JBDateInputInputTypes>([JBDateInputInputTypes.gregorian, JBDateInputInputTypes.jalali]).isRequired }),
+//     // calendarDefaultDateView: PropTypes.object,
+//     usePersianNumber: PropTypes.bool,
+//     // children:PropTypes.element
+// };
