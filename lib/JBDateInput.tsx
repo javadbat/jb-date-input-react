@@ -33,8 +33,8 @@ export type JBDateInputProps = {
     label?: string,
     style?:string,
     name?:string,
-    min: string | null | undefined,
-    max: string | null | undefined,
+    min?: string | null | undefined,
+    max?: string | null | undefined,
     format?: string,
     className?:string,
     onKeyup?: (e:JBDateInputEventType<KeyboardEvent>)=>void,
@@ -48,7 +48,7 @@ export type JBDateInputProps = {
     required?: boolean,
     calendarDefaultDateView?:{ year:number, month: number, dateType:JBDateInputInputTypes},
     usePersianNumber?: boolean,
-    placeholder:string | null | undefined,
+    placeholder?:string | null | undefined,
     children?:any,
 }
 
