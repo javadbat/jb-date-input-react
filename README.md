@@ -85,6 +85,14 @@ you can set minimum date and maximum date range for your app
  <JBDateInput label="تاریخ شروع " value="2020-08-10T08:51:23.176Z" min="2020-08-05T08:51:23.176Z" max="2020-08-15T08:51:23.176Z">
  </JBDateInput>
 ```
+## placeholder
+
+you can set placeholder to show it to user when input is empty. to doing so just set `placeholder` attribute in JSX DOM: 
+
+```jsx
+ <JBDateInput placeholder="Enter Date Here">
+ </JBDateInput>
+```
 ## custom validation
 
 beside of min and max you can also set your own custom validation like any other jb react components family to achive this you must create a array of validations and pass it to validationList props.

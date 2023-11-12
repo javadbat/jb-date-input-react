@@ -1,4 +1,7 @@
 #changelog
+## [2.3.0] - 2023-11-12
+### new features
+- add placeholder support when input is empty
 ## [2.2.0] - 2023-10-20
 ### new features
 - add support for `Date` type value
