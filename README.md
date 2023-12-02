@@ -79,7 +79,7 @@ we have 3 value type:
 
 ## min and max date limit
 
-you can set minimum date and maximum date range for your app 
+you can set minimum date and maximum date range for your app in string or Date type
 
 ```jsx
  <JBDateInput label="تاریخ شروع " value="2020-08-10T08:51:23.176Z" min="2020-08-05T08:51:23.176Z" max="2020-08-15T08:51:23.176Z">

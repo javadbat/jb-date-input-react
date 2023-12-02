@@ -1,4 +1,7 @@
 #changelog
+## [2.4.0] - 2023-11-12
+### new features
+- add Date to valid type for min & max date restriction input
 ## [2.3.0] - 2023-11-12
 ### new features
 - add placeholder support when input is empty

@@ -33,8 +33,8 @@ export type JBDateInputProps = {
     label?: string,
     style?:string,
     name?:string,
-    min?: string | null | undefined,
-    max?: string | null | undefined,
+    min?: string | null | undefined | Date,
+    max?: string | null | undefined | Date,
     format?: string,
     className?:string,
     onKeyup?: (e:JBDateInputEventType<KeyboardEvent>)=>void,
@@ -100,10 +100,10 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
         if (props.max) {
             if (props.format && props.format !== element.current?.valueFormat) {
                 onFormatChangeCallBackQueueRef.current.push(() => {
-                    if(props.max){element.current?.setAttribute('max', props.max);}
+                    if(props.max){element.current?.setMaxDate(props.max);}
                 });
             } else {
-                element.current?.setAttribute('max', props.max);
+                element.current?.setMaxDate(props.max);
             }
         }
 
@@ -112,10 +112,10 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
         if (props.min) {
             if (props.format && props.format !== element.current?.valueFormat) {
                 onFormatChangeCallBackQueueRef.current.push(() => {
-                    props.min && element.current?.setAttribute('min', props.min);
+                    props.min && element.current?.setMinDate(props.min);
                 });
             } else {
-                element.current?.setAttribute('min', props.min);
+                element.current?.setMinDate(props.min);
             }
         }
     }, [props.min]);
