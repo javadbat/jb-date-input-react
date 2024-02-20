@@ -1,4 +1,7 @@
 #changelog
+## [2.6.1] - 2024-2-20
+### fixed
+- fix optional value
 ## [2.6.0] - 2024-2-20
 ### new features
 - add `gregorianMonthList` and `jalaliMonthList` prop to easily customize month names.
