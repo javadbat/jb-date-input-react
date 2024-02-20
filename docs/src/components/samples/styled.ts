@@ -16,6 +16,9 @@ export const SamplesTitle = styled.h2`
 export const SamplesWrapper = styled.div`
   max-width: 400px;
   width: calc(100% - 32px);
+  display: flex;
+  flex-direction: column;
+  gap:1rem;
   jb-date-input{
     width: 100%;
   }

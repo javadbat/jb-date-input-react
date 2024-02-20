@@ -69,6 +69,7 @@ function Samples() {
             <div>b</div>
           </jb-date-input-inbox-element>
         </JBDateInput>
+        <JBDateInput label='with custom month name' jalaliMonthList={["حَمَل","ثَور","جَوزا","سَرَطان","اَسَد","سُنبُله","میزان","عَقرَب","قَوس","جَدْی","دَلو","حوت"]}></JBDateInput>
         <FormalTheme label="more formal look">{ }</FormalTheme>
       </SamplesWrapper>
 
