@@ -19,9 +19,11 @@ this component is a simple react component that use [jb-date-input](https://gith
 
 - good typing experience for desktop user
 
-- it use your page font by default. 
+- it use your page font by default.
 
-- have 3 value type so you can get inputed value in gregorian, jalali or timestamp base on your project need
+- customizable month names so you can change it for afghan or any other locals
+
+- have 3 value type so you can get inputted value in gregorian, jalali or timestamp base on your project need
 
 - customizable value format so you can get your value in standard iso format or custom format like `1400/12/08` or `1400_12_08`
 
@@ -214,6 +216,16 @@ you can change calendar icon base on your own need to doing so you just have to 
         </div>
     </JBDateInput>
 ```
+## Change Month List
+
+you may want to change the default month list for both  of Jalali and Gregorian calendars base on your country month labels. here how you can do it:   
+
+```jsx
+document.querySelector('jb-date-input').setMonthList('GREGORIAN',['1','2','3','4','5','6','7','8','9','10','11','12']);
+<JBDateInput jalaliMonthList={['حَمَل','ثَور','جَوزا','سَرَطان','اَسَد','سُنبُله','میزان','عَقرَب','قَوس','جَدْی','دَلو','حوت']}></JBDateInput>
+<JBDateInput gregorianMonthList={['1','2','3','4','5','6','7','8','9','10','11','12']}></JBDateInput>
+```
+
 ### set custom style
 
 in some cases in your project you need to change defualt style of react-component for example you need zero margin or different border-radius and etc.    

@@ -49,6 +49,8 @@ export type JBDateInputProps = {
     calendarDefaultDateView?:{ year:number, month: number, dateType:JBDateInputInputTypes},
     usePersianNumber?: boolean,
     placeholder?:string | null | undefined,
+    jalaliMonthList?:string[] | null | undefined,
+    gregorianMonthList?:string[] | null | undefined,
     children?:React.ReactNode | React.ReactNode[],
 }
 
@@ -124,6 +126,16 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
             element.current.value = props.value;
         }
     }, [props.value]);
+    useEffect(() => {
+        if (element.current && Array.isArray(props.jalaliMonthList)) {
+            element.current.setMonthList("JALALI",props.jalaliMonthList);
+        }
+    }, [props.jalaliMonthList]);
+    useEffect(() => {
+        if (element.current && Array.isArray(props.gregorianMonthList)) {
+            element.current.setMonthList("GREGORIAN",props.gregorianMonthList);
+        }
+    }, [props.gregorianMonthList]);
     useEffect(() => {
         if (element.current && props.placeholder !== undefined) {
             element.current.placeholder = props.placeholder;

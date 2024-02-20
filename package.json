@@ -19,7 +19,7 @@
     "react component",
     "react"
   ],
-  "version": "2.5.0",
+  "version": "2.6.0",
   "bugs": "https://github.com/javadbat/jb-date-input-react/issues",
   "license": "MIT",
   "files": [
@@ -37,6 +37,6 @@
     "url": "https://github.com/javadbat/jb-date-input-react"
   },
   "dependencies": {
-    "jb-date-input": ">=3.12.0"
+    "jb-date-input": ">=3.13.0"
   }
 }

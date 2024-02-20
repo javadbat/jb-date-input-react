@@ -1,4 +1,7 @@
 #changelog
+## [2.6.0] - 2024-2-20
+### new features
+- add `gregorianMonthList` and `jalaliMonthList` prop to easily customize month names.
 ## [2.4.0] - 2023-11-12
 ### new features
 - add Date to valid type for min & max date restriction input
