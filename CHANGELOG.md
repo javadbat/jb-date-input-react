@@ -1,4 +1,7 @@
 #changelog
+## [2.6.2] - 2024-2-20
+### fixed
+- - fix value change on arrow key. move it from base on `valueType` to base on `inputType` due to month and day boundary validation
 ## [2.6.1] - 2024-2-20
 ### fixed
 - fix optional value
