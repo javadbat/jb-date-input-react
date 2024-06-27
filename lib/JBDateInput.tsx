@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState, useImperativeHandle, useCallback, D
 import 'jb-date-input';
 // eslint-disable-next-line no-duplicate-imports
 import { JBDateInputWebComponent, JBDateInputInputTypes, JBDateInputValidationItem, JBDDateInputInboxElementWebComponent,JBDateInputValueObject } from 'jb-date-input';
-import { useEvent } from '../../custom-hooks/UseEvent';
+import { useEvent } from '../../../common/hooks/use-event';
 
 export {JBDateInputInputTypes,JBDateInputValueObject};
 
