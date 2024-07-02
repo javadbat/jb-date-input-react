@@ -106,11 +106,12 @@ const validationList = [
             message:'تاریخ باید تنها در قرن 13 شمسی باشد'
         },
         {
-            validator:(inputedText, valueObject, valueText)=>{
-                //you can use raw inputed text or formatted text in expected value in argumants
+            validator:({text, inputObject, valueObject, valueText})=>{
+                //you can use raw imputed text or formatted text in expected value in arguments
                 //you have access to both jalali and gregorian date object here in valueObject
+                //inputObject is a object contain imputed day & month & year unprocessed base on format so it have value before date imputed completely
                 // remember valueObject and valueText are both empty and null when date is incomplete
-                //if you want to validate incomplete date you can use inputedText
+                //if you want to validate incomplete date you can use inputText
                 return valueObject.jalali.day == 15;
             },
             message:'باید تاریخ حتما  15 ماه انتخاب شود'
