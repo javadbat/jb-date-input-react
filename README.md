@@ -226,6 +226,13 @@ document.querySelector('jb-date-input').setMonthList('GREGORIAN',['1','2','3','4
 <JBDateInput jalaliMonthList={['حَمَل','ثَور','جَوزا','سَرَطان','اَسَد','سُنبُله','میزان','عَقرَب','قَوس','جَدْی','دَلو','حوت']}></JBDateInput>
 <JBDateInput gregorianMonthList={['1','2','3','4','5','6','7','8','9','10','11','12']}></JBDateInput>
 ```
+## overflow handler
+
+sometimes you place date input inside modal or end of the pages so when user open the input picker it overflow the page and some part of picker will be invisible.  
+to fix this we add a feature called `overflowHandler` by set this to `JUMP` the picker will move, on mouse enter it's territory so user can easily pick date
+```jsx
+<JBDateInput overflowHandler="JUMP" />
+```
 
 ### set custom style
 

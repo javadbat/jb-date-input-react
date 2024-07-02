@@ -52,6 +52,7 @@ export type JBDateInputProps = {
   placeholder?: string | null | undefined,
   jalaliMonthList?: string[] | null | undefined,
   gregorianMonthList?: string[] | null | undefined,
+  overflowHandler?:"NONE" | "JUMP"
   children?: React.ReactNode | React.ReactNode[],
 }
 
@@ -142,6 +143,11 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
       element.current.placeholder = props.placeholder;
     }
   }, [props.placeholder]);
+  useEffect(() => {
+    if (element.current && props.overflowHandler !== undefined) {
+      element.current.overflowHandler = props.overflowHandler;
+    }
+  }, [props.overflowHandler]);
   useEffect(() => {
     if (element.current) {
       if (typeof props.style == "string") {

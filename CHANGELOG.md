@@ -1,4 +1,9 @@
 #changelog
+## [3.0.0] - 2024-7-2
+### Breaking changes:
+- refactor validation to standard jb design system validation tool
+- disable overflow handler by default add add `overflowHandler` prop so user can enable it when needed
+
 ## [2.6.2] - 2024-2-20
 ### fixed
 - - fix value change on arrow key. move it from base on `valueType` to base on `inputType` due to month and day boundary validation
