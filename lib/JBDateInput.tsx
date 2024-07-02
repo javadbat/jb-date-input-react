@@ -1,63 +1,64 @@
 import React, { useEffect, useRef, useState, useImperativeHandle, useCallback, DOMAttributes } from 'react';
 import 'jb-date-input';
 // eslint-disable-next-line no-duplicate-imports
-import { JBDateInputWebComponent, JBDateInputInputTypes, JBDateInputValidationItem, JBDDateInputInboxElementWebComponent,JBDateInputValueObject } from 'jb-date-input';
+import { JBDateInputWebComponent, JBDateInputInputTypes, ValidationItem, JBDDateInputInboxElementWebComponent, JBDateInputValueObject } from 'jb-date-input';
 import { useEvent } from '../../../common/hooks/use-event';
+import { JBDateInputValidationValue } from 'jb-date-input/dist/web-component/jb-date-input/lib/types';
 
-export {JBDateInputInputTypes,JBDateInputValueObject};
+export { JBDateInputInputTypes, JBDateInputValueObject };
 
-type CustomEvents<K extends string> = { [key in K] : (event: CustomEvent) => void };
+type CustomEvents<K extends string> = { [key in K]: (event: CustomEvent) => void };
 
 type CustomElement<T, K extends string> = Partial<T & DOMAttributes<T> & { children: any } & CustomEvents<`on${K}`>>;
 declare global {
-    // eslint-disable-next-line @typescript-eslint/no-namespace
-    namespace JSX {
-      interface IntrinsicElements {
-        'jb-date-input': JBDateInputType;
-        'jb-date-input-inbox-element':CustomElement<JBDDateInputInboxElementWebComponent,'Click'>;
-      }
-      interface JBDateInputType extends React.DetailedHTMLProps<React.HTMLAttributes<JBDateInputWebComponent>, JBDateInputWebComponent> {
-        class?:string,
-        label?: string,
-        name?:string,
-        "value-type"?: string,
-        "input-type"?:string,
-        // ref:React.RefObject<JBDateInputWebComponent>,
-      }
+  // eslint-disable-next-line @typescript-eslint/no-namespace
+  namespace JSX {
+    interface IntrinsicElements {
+      'jb-date-input': JBDateInputType;
+      'jb-date-input-inbox-element': CustomElement<JBDDateInputInboxElementWebComponent, 'Click'>;
     }
+    interface JBDateInputType extends React.DetailedHTMLProps<React.HTMLAttributes<JBDateInputWebComponent>, JBDateInputWebComponent> {
+      class?: string,
+      label?: string,
+      name?: string,
+      "value-type"?: string,
+      "input-type"?: string,
+      // ref:React.RefObject<JBDateInputWebComponent>,
+    }
+  }
 }
 export type JBDateInputEventType<T> = T & {
-    target: JBDateInputWebComponent
+  target: JBDateInputWebComponent
 }
 export type JBDateInputProps = {
-    label?: string,
-    style?:string,
-    name?:string,
-    min?: string | null | undefined | Date,
-    max?: string | null | undefined | Date,
-    format?: string,
-    className?:string,
-    onKeyup?: (e:JBDateInputEventType<KeyboardEvent>)=>void,
-    onChange?: (e:JBDateInputEventType<Event>)=>void,
-    onSelect?: (e:JBDateInputEventType<CustomEvent>)=>void,
-    valueType?: 'GREGORIAN'|'JALALI'|'TIME_STAMP',
-    inputType?: 'GREGORIAN'|'JALALI',
-    direction?: 'ltr'|'rtl',
-    value?: string | Date | null | undefined,
-    validationList?: JBDateInputValidationItem[],
-    required?: boolean,
-    calendarDefaultDateView?:{ year:number, month: number, dateType:JBDateInputInputTypes},
-    usePersianNumber?: boolean,
-    placeholder?:string | null | undefined,
-    jalaliMonthList?:string[] | null | undefined,
-    gregorianMonthList?:string[] | null | undefined,
-    children?:React.ReactNode | React.ReactNode[],
+  label?: string,
+  style?: string,
+  name?: string,
+  min?: string | null | undefined | Date,
+  max?: string | null | undefined | Date,
+  format?: string,
+  className?: string,
+  onKeyup?: (e: JBDateInputEventType<KeyboardEvent>) => void,
+  onChange?: (e: JBDateInputEventType<Event>) => void,
+  onSelect?: (e: JBDateInputEventType<CustomEvent>) => void,
+  valueType?: 'GREGORIAN' | 'JALALI' | 'TIME_STAMP',
+  inputType?: 'GREGORIAN' | 'JALALI',
+  direction?: 'ltr' | 'rtl',
+  value?: string | Date | null | undefined,
+  validationList?: ValidationItem<JBDateInputValidationValue>[],
+  required?: boolean,
+  calendarDefaultDateView?: { year: number, month: number, dateType: JBDateInputInputTypes },
+  usePersianNumber?: boolean,
+  placeholder?: string | null | undefined,
+  jalaliMonthList?: string[] | null | undefined,
+  gregorianMonthList?: string[] | null | undefined,
+  children?: React.ReactNode | React.ReactNode[],
 }
 
 export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
   const element = useRef<JBDateInputWebComponent>(null);
   const [refChangeCount, refChangeCountSetter] = useState(0);
-  const onFormatChangeCallBackQueueRef = useRef<(()=>void)[]>([]);
+  const onFormatChangeCallBackQueueRef = useRef<(() => void)[]>([]);
   useImperativeHandle(
     ref,
     () => (element ? element.current : {}),
@@ -66,17 +67,17 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
   useEffect(() => {
     refChangeCountSetter(refChangeCount + 1);
   }, [element.current]);
-  const onchange = useCallback((e:JBDateInputEventType<Event>) => {
+  const onchange = useCallback((e: JBDateInputEventType<Event>) => {
     if (props.onChange) {
       props.onChange(e);
     }
   }, [props.onChange]);
-  const onKeyup = useCallback((e:JBDateInputEventType<KeyboardEvent>) => {
+  const onKeyup = useCallback((e: JBDateInputEventType<KeyboardEvent>) => {
     if (props.onKeyup) {
       props.onKeyup(e);
     }
   }, [props.onKeyup]);
-  const onSelect = useCallback((e:JBDateInputEventType<CustomEvent>) => {
+  const onSelect = useCallback((e: JBDateInputEventType<CustomEvent>) => {
     if (props.onSelect) {
       props.onSelect(e);
     }
@@ -90,7 +91,7 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
         element.current?.setAttribute('format', props.format);
       }
       if (onFormatChangeCallBackQueueRef.current.length > 0) {
-        onFormatChangeCallBackQueueRef.current.forEach((callBack:()=>void) => {
+        onFormatChangeCallBackQueueRef.current.forEach((callBack: () => void) => {
           callBack();
         });
         onFormatChangeCallBackQueueRef.current = [];
@@ -102,7 +103,7 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
     if (props.max) {
       if (props.format && props.format !== element.current?.valueFormat) {
         onFormatChangeCallBackQueueRef.current.push(() => {
-          if(props.max){element.current?.setMaxDate(props.max);}
+          if (props.max) { element.current?.setMaxDate(props.max); }
         });
       } else {
         element.current?.setMaxDate(props.max);
@@ -128,12 +129,12 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
   }, [props.value]);
   useEffect(() => {
     if (element.current && Array.isArray(props.jalaliMonthList)) {
-      element.current.setMonthList("JALALI",props.jalaliMonthList);
+      element.current.setMonthList("JALALI", props.jalaliMonthList);
     }
   }, [props.jalaliMonthList]);
   useEffect(() => {
     if (element.current && Array.isArray(props.gregorianMonthList)) {
-      element.current.setMonthList("GREGORIAN",props.gregorianMonthList);
+      element.current.setMonthList("GREGORIAN", props.gregorianMonthList);
     }
   }, [props.gregorianMonthList]);
   useEffect(() => {
@@ -143,28 +144,31 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
   }, [props.placeholder]);
   useEffect(() => {
     if (element.current) {
-      if(typeof props.style == "string"){
-        element.current.setAttribute("style",props.style);
+      if (typeof props.style == "string") {
+        element.current.setAttribute("style", props.style);
       }
     }
   }, [props.style]);
   useEffect(() => {
     if (element.current && Array.isArray(props.validationList)) {
-      element.current.validationList = props.validationList;
+      element.current.validation.list = props.validationList;
     }
   }, [props.validationList]);
   useEffect(() => {
     if (element.current && props.direction) {
       element.current.setAttribute('direction', props.direction);
     }
-  },[props.direction]);
+  }, [props.direction]);
   useEffect(() => {
-    if (props.required) {
-      element.current?.setAttribute('required', "true");
-    } else {
-      element.current?.removeAttribute('required');
+    if (element.current) {
+      if (props.required) {
+        element.current.required = true;
+      } else {
+        element.current.required = false;
+      }
     }
-  }, [props.required]);
+
+  }, [props.required,element.current]);
   useEffect(() => {
     if (typeof props.calendarDefaultDateView == "object" && props.calendarDefaultDateView.year && props.calendarDefaultDateView.month) {
       element.current?.setCalendarDefaultDateView(props.calendarDefaultDateView.year, props.calendarDefaultDateView.month, props.calendarDefaultDateView.dateType);
