@@ -3,7 +3,7 @@ import 'jb-date-input';
 // eslint-disable-next-line no-duplicate-imports
 import { JBDateInputWebComponent, JBDateInputInputTypes, ValidationItem, JBDDateInputInboxElementWebComponent, JBDateInputValueObject } from 'jb-date-input';
 import { useEvent } from '../../../common/hooks/use-event';
-import { VallidationValue } from 'jb-date-input/dist/web-component/jb-date-input/lib/types';
+import { ValidationValue } from 'jb-date-input/dist/web-component/jb-date-input/lib/types';
 
 export { JBDateInputInputTypes, JBDateInputValueObject };
 
@@ -45,7 +45,7 @@ export type JBDateInputProps = {
   inputType?: 'GREGORIAN' | 'JALALI',
   direction?: 'ltr' | 'rtl',
   value?: string | Date | null | undefined,
-  validationList?: ValidationItem<JBDateInputValidationValue>[],
+  validationList?: ValidationItem<ValidationValue>[],
   required?: boolean,
   calendarDefaultDateView?: { year: number, month: number, dateType: JBDateInputInputTypes },
   usePersianNumber?: boolean,
