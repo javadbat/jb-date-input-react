@@ -3,7 +3,7 @@ import 'jb-date-input';
 // eslint-disable-next-line no-duplicate-imports
 import { JBDateInputWebComponent, JBDateInputInputTypes, ValidationItem, JBDDateInputInboxElementWebComponent, JBDateInputValueObject } from 'jb-date-input';
 import { useEvent } from '../../../common/hooks/use-event';
-import { ValidationValue } from 'jb-date-input/dist/web-component/jb-date-input/lib/types';
+import { type ValidationValue } from 'jb-date-input/types';
 
 export { JBDateInputInputTypes, JBDateInputValueObject };
 
