@@ -62,12 +62,8 @@ function Samples() {
           </div>
         </JBDateInput>
         <JBDateInput label="with inner-box section">
-          <jb-date-input-inbox-element slot="end-section">
-            <div>a</div>
-          </jb-date-input-inbox-element>
-          <jb-date-input-inbox-element slot="start-section">
-            <div>b</div>
-          </jb-date-input-inbox-element>
+            <div slot="end-section">a</div>
+            <div slot="start-section">b</div>
         </JBDateInput>
         <JBDateInput label='with custom month name' jalaliMonthList={["حَمَل","ثَور","جَوزا","سَرَطان","اَسَد","سُنبُله","میزان","عَقرَب","قَوس","جَدْی","دَلو","حوت"]}></JBDateInput>
         <FormalTheme label="more formal look">{ }</FormalTheme>

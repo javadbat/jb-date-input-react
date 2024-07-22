@@ -6,16 +6,11 @@ import { useEvent } from '../../../common/hooks/use-event';
 import { type ValidationValue } from 'jb-date-input/types';
 
 export { JBDateInputInputTypes, JBDateInputValueObject };
-
-type CustomEvents<K extends string> = { [key in K]: (event: CustomEvent) => void };
-
-type CustomElement<T, K extends string> = Partial<T & DOMAttributes<T> & { children: any } & CustomEvents<`on${K}`>>;
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
       'jb-date-input': JBDateInputType;
-      'jb-date-input-inbox-element': CustomElement<JBDDateInputInboxElementWebComponent, 'Click'>;
     }
     interface JBDateInputType extends React.DetailedHTMLProps<React.HTMLAttributes<JBDateInputWebComponent>, JBDateInputWebComponent> {
       class?: string,
