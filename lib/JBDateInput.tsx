@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useState, useImperativeHandle, useCallback, DOMAttributes } from 'react';
+import React, { useEffect, useRef, useState, useImperativeHandle, useCallback } from 'react';
 import 'jb-date-input';
 // eslint-disable-next-line no-duplicate-imports
-import { JBDateInputWebComponent, JBDateInputInputTypes, ValidationItem, JBDDateInputInboxElementWebComponent, JBDateInputValueObject } from 'jb-date-input';
+import { JBDateInputWebComponent, type JBDateInputInputTypes, } from 'jb-date-input';
+import { type ValidationItem } from 'jb-validation/types';
 import { useEvent } from '../../../common/hooks/use-event';
-import { type ValidationValue } from 'jb-date-input/types';
+import { type ValidationValue, type JBDateInputValueObject } from 'jb-date-input/types';
 
-export { JBDateInputInputTypes, JBDateInputValueObject };
+export { type JBDateInputInputTypes, type JBDateInputValueObject };
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
