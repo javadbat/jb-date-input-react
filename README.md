@@ -32,6 +32,7 @@ this component is a simple react component that use [jb-date-input](https://gith
 Demo & Sample    
 in github: <https://javadbat.github.io/jb-date-input-react/>    
 in codepen: <https://codepen.io/javadbat/pen/qBRyYKY>    
+in codeSandBox: [codeSandbox preview](https://3f63dj.csb.app/samples/jb-date-input) for just see the demo and [codeSandbox editor](https://codesandbox.io/p/sandbox/jb-design-system-3f63dj?file=%2Fsrc%2Fsamples%2FJBDateInput.tsx) if you want to see and play with code
 
 ## instructions
 
@@ -59,8 +60,8 @@ import {JBDateInput} from 'jb-date-input-react';
 
 ## format
 
-defualt format of date input is 'YYYY-MM-DDTHH:mm:ss.SSS[Z]' that compatible and exact format of `new Date().toISOString()`
-you can change it however you need and `[Z]` mean the exact Z charecter that used in ISO standard format `YYYY-MM-DDTHH:mm:ss.SSSZ[Z]` => `2012-06-21T00:00:00.000+3:30Z`
+default format of date input is 'YYYY-MM-DDTHH:mm:ss.SSS[Z]' that compatible and exact format of `new Date().toISOString()`
+you can change it however you need and `[Z]` mean the exact Z character that used in ISO standard format `YYYY-MM-DDTHH:mm:ss.SSSZ[Z]` => `2012-06-21T00:00:00.000+3:30Z`
 you can change format by format attribute:
 
 ```jsx
@@ -186,9 +187,9 @@ when date input value is empty we show today year and month in opened calendar b
 <JBDateInput inputType="JALALI" calendarDefaultDateView={{year:1350, month:3}}></JBDateInput>
 ```
 ## show persian number
-if you want to show persian number instead of English number char you just have to set `usePersianNumber` prop like this:
+if you want to show persian number instead of English number char you just have to set `showPersianNumber` prop like this:
 ```jsx
-<JBDateInput usePersianNumber={true}></JBDateInput>
+<JBDateInput showPersianNumber={true}></JBDateInput>
 ```
 ## customize calendar button trigger
 
@@ -298,3 +299,11 @@ in jb-input you can put icon or any other custom html DOM in input box. to doing
     <div slot="start-section">before</div>
 </JBDateInput>
 ```
+
+## Other Related Docs:
+
+- see [jb-date-input](https://github.com/javadbat/jb-date-input) if you want to use this component as a web-component
+
+- see [All JB Design system Component List](https://github.com/javadbat/design-system/blob/master/docs/component-list.md) for more components
+
+- use [Contribution Guide](https://github.com/javadbat/design-system/blob/master/docs/contribution-guide.md) if you want to contribute in this component.

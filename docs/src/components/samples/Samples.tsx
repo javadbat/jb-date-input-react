@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { FormalTheme, RTLJBDateInput, SamplesSectionWrapper, SamplesTitle, SamplesWrapper } from './styled';
 import dynamic from 'next/dynamic';
-import { JBDateInputValueObject } from 'jb-date-input-react';
+import { JBDateInputValueObject, ValidationItem, ValidationValue } from 'jb-date-input-react';
 enum InputTypes {
   jalali = 'JALALI',
   gregorian = 'GREGORIAN'
@@ -9,17 +9,17 @@ enum InputTypes {
 const JBDateInput = dynamic(() => import('jb-date-input-react').then(module => module.JBDateInput), {
   ssr: false,
 });
-const validationList = [
+const validationList:ValidationItem<ValidationValue>[] = [
   {
     validator: /^13.*$/g,
     message: 'تاریخ باید تنها در قرن 13 شمسی باشد'
   },
   {
-    validator: (inputedText: string, valueObject: JBDateInputValueObject, valueText: string) => {
-      //you can use raw inputed text or formatted text in expected value in argumants
+    validator: ({text,inputObject,valueObject,valueText}) => {
+      //you can use raw inputted text or formatted text in expected value in arguments
       //you have access to both jalali and gregorian date object here in valueObject
       // remember valueObject and valueText are both empty and null when date is incomplete
-      //if you want to validate incomplete date you can use inputedText
+      //if you want to validate incomplete date you can use inputtedText
       return valueObject.jalali.day == 15;
     },
     message: 'باید تاریخ حتما  15 ماه انتخاب شود'
@@ -33,8 +33,8 @@ function Samples() {
       </SamplesTitle>
       <SamplesWrapper>
         <JBDateInput label="simple date:">{ }</JBDateInput>
-        <JBDateInput label="with persian number" usePersianNumber={true}>{ }</JBDateInput>
-        <RTLJBDateInput label="راست به چپ" usePersianNumber={true}>{ }</RTLJBDateInput>
+        <JBDateInput label="with persian number" showPersianNumber={true}>{ }</JBDateInput>
+        <RTLJBDateInput label="راست به چپ" showPersianNumber={true}>{ }</RTLJBDateInput>
         <JBDateInput label="with default value:" value="2020-08-10T08:51:23.176Z">{ }</JBDateInput>
         <JBDateInput label="with min and max value:" value="2020-08-10T08:51:23.176Z" min="2020-08-05T08:51:23.176Z" max="2020-08-15T08:51:23.176Z">{ }</JBDateInput>
         <JBDateInput label="with validation" validationList={validationList}>{ }</JBDateInput>
@@ -62,10 +62,10 @@ function Samples() {
           </div>
         </JBDateInput>
         <JBDateInput label="with inner-box section">
-            <div slot="end-section">a</div>
-            <div slot="start-section">b</div>
+          <div slot="end-section">a</div>
+          <div slot="start-section">b</div>
         </JBDateInput>
-        <JBDateInput label='with custom month name' jalaliMonthList={["حَمَل","ثَور","جَوزا","سَرَطان","اَسَد","سُنبُله","میزان","عَقرَب","قَوس","جَدْی","دَلو","حوت"]}></JBDateInput>
+        <JBDateInput label='with custom month name' jalaliMonthList={["حَمَل", "ثَور", "جَوزا", "سَرَطان", "اَسَد", "سُنبُله", "میزان", "عَقرَب", "قَوس", "جَدْی", "دَلو", "حوت"]}></JBDateInput>
         <FormalTheme label="more formal look">{ }</FormalTheme>
       </SamplesWrapper>
 

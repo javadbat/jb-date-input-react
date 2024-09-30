@@ -1,19 +1,19 @@
-import React, { useEffect, useRef, useState, useImperativeHandle, useCallback } from 'react';
+import React, { useEffect, useRef, useState, useImperativeHandle, useCallback, MutableRefObject, RefObject, ReactNode, forwardRef, DetailedHTMLProps, HTMLAttributes } from 'react';
 import 'jb-date-input';
 // eslint-disable-next-line no-duplicate-imports
 import { JBDateInputWebComponent, type JBDateInputInputTypes, } from 'jb-date-input';
 import { type ValidationItem } from 'jb-validation/types';
 import { useEvent } from '../../../common/hooks/use-event';
-import { type ValidationValue, type JBDateInputValueObject } from 'jb-date-input/types';
-
-export { type JBDateInputInputTypes, type JBDateInputValueObject };
+import { type ValidationValue, type JBDateInputValueObject, type InputType } from 'jb-date-input/types';
+// re-export imported types for easier use for user
+export { type JBDateInputInputTypes, type JBDateInputValueObject, type ValidationItem, type ValidationValue };
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace JSX {
     interface IntrinsicElements {
       'jb-date-input': JBDateInputType;
     }
-    interface JBDateInputType extends React.DetailedHTMLProps<React.HTMLAttributes<JBDateInputWebComponent>, JBDateInputWebComponent> {
+    interface JBDateInputType extends DetailedHTMLProps<HTMLAttributes<JBDateInputWebComponent>, JBDateInputWebComponent> {
       class?: string,
       label?: string,
       name?: string,
@@ -32,6 +32,7 @@ export type JBDateInputProps = {
   name?: string,
   min?: string | null | undefined | Date,
   max?: string | null | undefined | Date,
+  message?: string | null | undefined,
   format?: string,
   className?: string,
   onKeyup?: (e: JBDateInputEventType<KeyboardEvent>) => void,
@@ -43,17 +44,17 @@ export type JBDateInputProps = {
   value?: string | Date | null | undefined,
   validationList?: ValidationItem<ValidationValue>[],
   required?: boolean,
-  calendarDefaultDateView?: { year: number, month: number, dateType: JBDateInputInputTypes },
-  usePersianNumber?: boolean,
+  calendarDefaultDateView?: { year: number, month: number, dateType?: InputType },
+  showPersianNumber?: boolean,
   placeholder?: string | null | undefined,
   jalaliMonthList?: string[] | null | undefined,
   gregorianMonthList?: string[] | null | undefined,
   overflowHandler?:"NONE" | "SLIDE",
-  overflowRef?:React.RefObject<HTMLElement> | null,
-  children?: React.ReactNode | React.ReactNode[],
+  overflowRef?:RefObject<HTMLElement> | null | MutableRefObject<HTMLElement | undefined>,
+  children?: ReactNode | ReactNode[],
 }
 
-export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
+export const JBDateInput = forwardRef((props: JBDateInputProps, ref) => {
   const element = useRef<JBDateInputWebComponent>(null);
   const [refChangeCount, refChangeCountSetter] = useState(0);
   const onFormatChangeCallBackQueueRef = useRef<(() => void)[]>([]);
@@ -126,6 +127,11 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
     }
   }, [props.value]);
   useEffect(() => {
+    if (element.current) {
+      element.current.setAttribute("message",props.message || "");
+    }
+  }, [props.message]);
+  useEffect(() => {
     if (element.current && Array.isArray(props.jalaliMonthList)) {
       element.current.setMonthList("JALALI", props.jalaliMonthList);
     }
@@ -183,12 +189,12 @@ export const JBDateInput = React.forwardRef((props: JBDateInputProps, ref) => {
     }
   }, [props.calendarDefaultDateView]);
   useEffect(() => {
-    if (props.usePersianNumber) {
-      element.current?.setAttribute('use-persian-number', 'true');
+    if (props.showPersianNumber) {
+      element.current?.setAttribute('show-persian-number', 'true');
     } else {
-      element.current?.removeAttribute('use-persian-number');
+      element.current?.removeAttribute('show-persian-number');
     }
-  }, [props.usePersianNumber]);
+  }, [props.showPersianNumber]);
   return (
     <jb-date-input class={props.className ? props.className : ""} name={props.name} label={props.label} value-type={props.valueType ? props.valueType : 'GREGORIAN'} ref={element} input-type={props.inputType ? props.inputType : 'JALALI'}>
       {props.children}
