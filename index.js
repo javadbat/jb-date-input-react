@@ -1,1 +1,1 @@
-export {JBDateInput,JBDateInputInputTypes} from './dist/JBDateInput.js';
+export * from './dist/JBDateInput.js';
